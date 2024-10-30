@@ -46,4 +46,3 @@ else
     sudo docker run -d --network my_network_$i --name repocket_$i -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da --restart=always repocket/repocket
     i=$((i + 1))
   done
-fi
