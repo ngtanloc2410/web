@@ -6,7 +6,7 @@ sudo apt update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y 
 sudo apt update -y && sudo apt upgrade -y
 # Get the IP addresses from the command output
-ip_addresses=$(ip addr show ens5 | awk '/inet / {print $2}' | cut -d'/' -f1)
+ip_addresses=$(ip addr show enX0 | awk '/inet / {print $2}' | cut -d'/' -f1)
 i=3
 # Print the IP addresses
 echo "IP Addresses:"
