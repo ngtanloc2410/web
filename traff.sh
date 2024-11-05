@@ -13,7 +13,7 @@ if ip link show enX0 > /dev/null 2>&1; then
   for ip in $ip_addresses; do
     sudo docker network create my_network_$i --driver bridge --subnet 192.168.3$i.0/24
     sudo iptables -t nat -I POSTROUTING -s 192.168.3$i.0/24 -j SNAT --to-source $ip
-    container_id=$(sudo docker run -d --network my_network_$i appropriate/curl curl -4 icanhazip.com)
+    container_id=$(sudo docker run -d --network my_network_$i alpine/curl curl -s -4 icanhazip.com)
     $ip1=$(sudo docker logs $container_id)
     echo $ip1
     sudo docker run -d --network my_network_$i --name traff_$i traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip1
