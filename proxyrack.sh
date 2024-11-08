@@ -32,7 +32,7 @@ else
     i=$((i + 1))
   done
 fi
-for dem in $(seq 1 120)
+for dem in $(seq 1 90)
 do
 clear
 echo "Time remaining : $((120 - dem)) seconds"
