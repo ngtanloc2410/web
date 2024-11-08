@@ -47,7 +47,7 @@ curl -X POST https://peer.proxyrack.com/api/device/add -H "Api-Key: NQ9WEFFMDQ8T
 for dem in $(seq 1 30)
 do
 clear
-printf "%d/5\r" "Time remaining : $((30 - dem)) seconds"
+printf "%d/5\r" "$((30 - dem))"
 sleep 1
 done
 done
