@@ -43,8 +43,6 @@ for i in "${list[@]}"; do
 echo "$i"
 b=${i%|*}
 c=${i##*|}
-echo $b
-echo $c
 curl -X POST https://peer.proxyrack.com/api/device/add -H "Api-Key: SYNVQSYZKHMA9IYBFA95A30OMONZXF3RKPFWDHWL" -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{"device_id":"'"$b"'","device_name":"'"$c"'"}'
-sleep 2
+sleep 20
 done
