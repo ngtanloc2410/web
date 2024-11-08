@@ -55,10 +55,10 @@ else
     i=$((i + 1))
   done
 fi
-for dem in $(seq 1 120)
+for dem in $(seq 1 90)
 do
 clear
-echo "Time remaining : $((120 - dem)) seconds"
+echo "Time remaining : $((90 - dem)) seconds"
 sleep 1
 done
 echo "\nTime's up!"
@@ -67,5 +67,9 @@ echo "$i"
 b=${i%|*}
 c=${i##*|}
 curl -X POST https://peer.proxyrack.com/api/device/add -H "Api-Key: SYNVQSYZKHMA9IYBFA95A30OMONZXF3RKPFWDHWL" -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{"device_id":"'"$b"'","device_name":"'"$c"'"}'
-sleep 30
+for dems in $(seq 1 30)
+do
+printf "%d\r" "$((30 - dems))"
+sleep 1
+done
 done
