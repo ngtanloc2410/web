@@ -12,7 +12,6 @@ if ip link show enX0 > /dev/null 2>&1; then
     sleep 2
     UUID=$(cat /dev/urandom | LC_ALL=C tr -dc 'A-F0-9' | dd bs=1 count=64 2>/dev/null && echo)
 sudo docker run -d --network my_network_$i --name proxyrack_$i --restart always -e UUID="$UUID" proxyrack/pop
-ip=$(curl -4 icanhazip.com)
 
 for dem in $(seq 1 120)
 do
@@ -41,7 +40,6 @@ else
     sleep 2
         UUID=$(cat /dev/urandom | LC_ALL=C tr -dc 'A-F0-9' | dd bs=1 count=64 2>/dev/null && echo)
 sudo docker run -d --network my_network_$i --name proxyrack_$i --restart always -e UUID="$UUID" proxyrack/pop
-ip=$(curl -4 icanhazip.com)
 
 for dem in $(seq 1 120)
 do
