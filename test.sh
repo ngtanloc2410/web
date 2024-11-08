@@ -9,8 +9,8 @@ echo "IP Address: $ip"
 echo "UUID: $UUID"
 
 countdown_time=120
-for i in $(seq $countdown_time -1 1); do
-  echo -ne "Time remaining: $i seconds"
+for ((i=countdown_time; i>0; i--)); do
+  echo -ne "Time remaining: $i seconds\r"
   sleep 1  # Wait for 1 second
 done
 
