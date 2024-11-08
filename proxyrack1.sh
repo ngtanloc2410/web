@@ -35,7 +35,7 @@ fi
 for dem in $(seq 1 90)
 do
 clear
-echo "Time remaining : $((120 - dem)) seconds"
+echo "Time remaining : $((90 - dem)) seconds"
 sleep 1
 done
 echo "\nTime's up!"
