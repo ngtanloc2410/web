@@ -46,7 +46,7 @@ c=${i##*|}
 curl -X POST https://peer.proxyrack.com/api/device/add -H "Api-Key: NQ9WEFFMDQ8TTUUKDLHMPW6IEXVEBBB8RGDCPIOU" -H 'Content-Type: application/json' -H 'Accept: application/json' -d '{"device_id":"'"$b"'","device_name":"'"$c"'"}'
 for dem in $(seq 1 30)
 do
-printf "%d/5\r" "$((30 - dem))"
+printf "%d\r" "$((30 - dem))"
 sleep 1
 done
 done
