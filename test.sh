@@ -10,7 +10,7 @@ do
 clear
 echo "IP Address: $ip"
 echo "UUID: $UUID"
-echo -ne "Time remaining: $count"
+echo "Time remaining: $count"
 sleep 1
 ((count=count-1))
 done
