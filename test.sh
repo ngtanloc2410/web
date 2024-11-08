@@ -9,7 +9,7 @@ do
 clear
 echo "IP Address: $ip"
 echo "UUID: $UUID"
-  echo "Time remaining : $(120 - $i)"
+  echo "Time remaining : $((120 - i)) seconds"
 sleep 1
 done
 
