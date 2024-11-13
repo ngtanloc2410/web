@@ -6,7 +6,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 ip=$(curl -4 icanhazip.com)
 UUID=$(curl http://3.133.104.114:3000/?proxyrack=$ip)
 echo $ip
-sudo docker run -d --name traff traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip
-sudo docker run -d --name repocket -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da --restart=always repocket/repocket
+sudo docker run -d --restart=always --name traff traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip
+sudo docker run -d --restart=always --name repocket -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da repocket/repocket
 sudo docker run -d --restart unless-stopped packetshare/packetshare -accept-tos -email=locpaypal@gmail.com -password=Loc123456789
-sudo docker run -d --name proxyrack --restart always -e UUID="$UUID" proxyrack/pop
+sudo docker run -d --restart=always --name proxyrack -e UUID="$UUID" proxyrack/pop
