@@ -17,17 +17,19 @@ if ip link show enX0 > /dev/null 2>&1; then
     container_id=$(sudo docker run -d --network my_network_$i alpine/curl curl -s -4 icanhazip.com)
     sleep 2
     ip1=$(sudo docker logs $container_id)
+    UUID=$(curl http://3.133.104.114:3000/?proxyrack=$ip1)
     sleep 2
     echo $ip1
     sleep 2
-    sudo docker run -d --network my_network_$i --name traff_$i traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip1
-    sudo docker run -d --network my_network_$i --name repocket_$i -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da --restart=always repocket/repocket
-    #sudo docker run -d --restart unless-stopped --network my_network_$i --name packetshare_$i packetshare/packetshare -accept-tos -email=locpaypal@gmail.com -password=Loc123456789
+    sudo docker run -d --network my_network_$i --restart=always --name traff_$i traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip1
+    sudo docker run -d --network my_network_$i --restart=always --name repocket_$i -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da repocket/repocket
+    sudo docker run -d --network my_network_$i --restart unless-stopped --name packetshare_$i packetshare/packetshare -accept-tos -email=locpaypal@gmail.com -password=Loc123456789
+    sudo docker run -d --network my_network_$i --restart=always --name proxyrack_$i -e UUID="$UUID" proxyrack/pop
     i=$((i + 1))
   done
 else
-  # Get IP addresses for ens5
-  ip_addresses=$(ip addr show ens5 | awk '/inet / {print $2}' | cut -d'/' -f1)
+  # Get IP addresses for enX0
+  ip_addresses=$(ip addr show enX0 | awk '/inet / {print $2}' | cut -d'/' -f1)
   i=3
 
   # Print the IP addresses and execute Docker commands
@@ -39,12 +41,14 @@ else
     container_id=$(sudo docker run -d --network my_network_$i alpine/curl curl -s -4 icanhazip.com)
     sleep 2
     ip1=$(sudo docker logs $container_id)
+    UUID=$(curl http://3.133.104.114:3000/?proxyrack=$ip1)
     sleep 2
     echo $ip1
     sleep 2
-    sudo docker run -d --network my_network_$i --name tm_$i traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip1
-    sudo docker run -d --network my_network_$i --name repocket_$i -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da --restart=always repocket/repocket
-    #sudo docker run -d --restart unless-stopped --network my_network_$i --name packetshare_$i packetshare/packetshare -accept-tos -email=locpaypal@gmail.com -password=Loc123456789
+    sudo docker run -d --network my_network_$i --restart=always --name traff_$i traffmonetizer/cli_v2 start accept --token cCuCGOWZXNnk9dL5BR+cz1QHbjCdXJnFb8e3a9OAS2k= --device-name $ip1
+    sudo docker run -d --network my_network_$i --restart=always --name repocket_$i -e RP_EMAIL=nguyentanloc180@gmail.com -e RP_API_KEY=8873dd7c-f936-4deb-b128-c15dc54813da repocket/repocket
+    sudo docker run -d --network my_network_$i --restart unless-stopped --name packetshare_$i packetshare/packetshare -accept-tos -email=locpaypal@gmail.com -password=Loc123456789
+    sudo docker run -d --network my_network_$i --restart=always --name proxyrack_$i -e UUID="$UUID" proxyrack/pop
     i=$((i + 1))
   done
 fi
