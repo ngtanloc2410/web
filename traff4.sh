@@ -3,9 +3,9 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyring
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-if ip link show ens3 > /dev/null 2>&1; then
+if ip link show ens5 > /dev/null 2>&1; then
   # Get IP addresses for enX0
-  ip_addresses=$(ip addr show ens3 | awk '/inet / {print $2}' | cut -d'/' -f1)
+  ip_addresses=$(ip addr show ens5 | awk '/inet / {print $2}' | cut -d'/' -f1)
   i=3
 
   # Print the IP addresses and execute Docker commands
